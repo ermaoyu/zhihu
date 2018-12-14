@@ -1,0 +1,46 @@
+<html>
+<body>
+    <pre>
+        #set($title= "maomaoyu_title")<br>
+        Title: $!{title}<br>
+
+        Parse;#parse("header.html")<br>
+        Title: #include("header.html")<br>
+
+        $!{value1}<br>
+        $!{value2} <br>##如果不存在强制为空
+        ${value3}<br>
+
+        #foreach($color in $colors)
+            This is Color $!{foreach.index}:$color,$!{foreach.count}
+        #end
+
+        #foreach($key in $map.KeySet())
+            Number: $key,Value: $map.get($key)
+        #end
+
+        #foreach($kv in $map.entrySet())
+            Number: $kv.key, Value: $kv.value
+        #end
+
+        User: $!{user.name}
+        $!{user.description}
+        $!{user.getDescription()}
+
+        #macro (render_color,$index,$color)
+            Color Render Macro $index,$color
+        #end
+
+        #foreach($color in $colors)
+            #render_color($foreach.index,$color)
+        #end
+
+        #set($hello ="hello")
+        #set($helloworld1 = "$!{hello}world")##双引号能解析字符中的语法
+        $!hello
+        $helloworld1
+        #set($helloworld2 = '$!{hello}world')##单引号不能解析
+        $helloworld2
+    </pre>
+</body>
+</html>
