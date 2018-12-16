@@ -20,15 +20,15 @@ import java.util.*;
 /**
  * maomaoyu    2018/12/14_16:43
  **/
-@Controller
+//@Controller
 public class IndexController {
     private static  final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
     WendaService wendaService;
 
-    @RequestMapping(path = {"/","/index"},method = {RequestMethod.GET})
-    @ResponseBody
+//    @RequestMapping(path = {"/","/index"},method = {RequestMethod.GET})
+//    @ResponseBody
     public String index(HttpSession httpSession){
         LOGGER.error("Visit home,html");
         return wendaService.getMessage(2) + "Hello maomaoyu" + httpSession.getAttribute("msg");

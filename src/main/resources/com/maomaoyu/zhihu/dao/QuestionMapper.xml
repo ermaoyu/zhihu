@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maomaoyu.zhihu.dao.QuestionMapper">
+    <sql id="table">question</sql>
+    <sql id="selectFields">id, title, content, comment_count,created_date,user_id,status</sql>
+    
+    <select id="selectLatestQuestion" resultType="com.maomaoyu.zhihu.bean.Question">
+        select 
+        <include refid="selectFields"/>
+        from
+        <include refid="table"/>
+        where status = 0
+        <if test="userId != 0">
+            and user_id = #{userId}
+        </if>
+        order by id desc
+        limit #{offset},#{limit}
+    </select>
+
+</mapper>
