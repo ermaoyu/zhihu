@@ -23,6 +23,12 @@ public interface UserMapper {
     @Select({"select ",SELECT_FIELD," from ",TABLE_NAME," where id=#{id} and status=0" })
     User findById(int id);
 
+    @Select({"select ",SELECT_FIELD," from ",TABLE_NAME," where name=#{name} and status=0" })
+    User findByName(String name);
+
+    @Select({"select ",SELECT_FIELD," from ",TABLE_NAME," where email=#{email} and status=0" })
+    User findByEmail(String email);
+
     @Select({"select ",SELECT_FIELD," from ",TABLE_NAME," where status=0"})
     List<User> findAll();
 

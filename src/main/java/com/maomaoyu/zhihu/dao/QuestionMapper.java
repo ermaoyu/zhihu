@@ -17,7 +17,9 @@ public interface QuestionMapper {
     String SELECT_FIELD = "id, " + INSERT_FIELD;
 
     @Select({"insert into ",TABLE_NAME," (",INSERT_FIELD,") values(#{title},#{content},#{userId},#{createdDate},#{commentCount},#{status})"})
-    void addQuestion(Question question);
+    int addQuestion(Question question);
 
     List<Question> selectLatestQuestion(@Param("userId") int userId,@Param("offset") int offset,@Param("limit") int limit);
+
+
 }
